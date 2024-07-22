@@ -1,0 +1,200 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.espe.msvc.cursos.services.CursoServiceImpl",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_3122979 { 
+   	label=espe
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_50996546 { 
+   	label=msvc
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Curso24367923[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Curso</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cursoUsuarios: List&lt;CursoUsuario&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nombre: String [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   usuarios: List&lt;Usuario&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addCursoUsuario(cursoUsuario: CursoUsuario)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeCursoUsuario(cursoUsuario: CursoUsuario)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CursoController1879258435[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CursoController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   service: CursoService [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ agregarUsuario(usuario: Usuario, idCurso: Long): ResponseEntity&lt;?&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ crear(curso: Curso, result: BindingResult): ResponseEntity&lt;?&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ detalle(id: Long): ResponseEntity&lt;?&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ editar(curso: Curso, result: BindingResult, id: Long): ResponseEntity&lt;?&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ eliminar(id: Long): ResponseEntity&lt;?&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ eliminarUsuario(usuario: Usuario, idCurso: Long): ResponseEntity&lt;?&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ listar(): List&lt;Curso&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ listarNoMatriculados(idCurso: Long): List&lt;Usuario&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- validar(result: BindingResult): ResponseEntity&lt;Map&lt;String, String&gt;&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CursoServiceImpl1989615688[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CursoServiceImpl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cursoUsuarioRepository: CursoUsuarioRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   repository: CursoRepository [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   usuarioClientRest: UsuarioClientRest [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ agregarUsuario(usuario: Usuario, idCurso: Long): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ crearUsuario(usuario: Usuario, idCurso: Long): Optional&lt;Usuario&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ eliminar(id: Long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ eliminarUsuario(usuario: Usuario, idCurso: Long): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ guardar(curso: Curso): Curso</TD></TR>
+<TR><TD ALIGN="LEFT" >+ listar(): List&lt;Curso&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ obtenerUsuariosNoEnCurso(cursoId: Long): List&lt;Usuario&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ porId(id: Long): Optional&lt;Curso&gt;</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CursoUsuario24367923[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CursoUsuario</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   usuarioId: Long [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Usuario1426016324[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Usuario</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   email: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nombre: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   password: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+Curso24367923 -> CursoUsuario24367923[label="cursoUsuarios
+[0..*]"];
+Curso24367923 -> Usuario1426016324[label="usuarios
+[0..*]"];
+CursoController1879258435 -> CursoServiceImpl1989615688[label="service
+[1]", arrowhead=none];
+    
+}
+@enduml
